@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "81:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+
+  web_app:
+    image: alpine:latest
+    command: sh -c "while true; do wget -q -O- http://nginx; sleep 2; done"
+
+  

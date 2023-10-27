@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # nginx:
+  #   image: nginx
+  #   ports:
+  #     - "81:80"
+  #   volumes:
+  #     - ./html:/usr/share/nginx/html
+
+  # web_app:
+  #   image: alpine:latest
+  #   command: sh -c "while true; do wget -q -O- http://nginx; sleep 2; done"
+
+  minio:
+    image: minio/minio
+    environment:
+      - MINIO_ROOT_USER=jinalgajjar
+      - MINIO_ROOT_PASSWORD=jinalgajjar 
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./minio_data:/data
+    command: server --console-address ":9001" data
